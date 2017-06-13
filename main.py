@@ -57,6 +57,7 @@ def validate_form():
 
 @app.route('/welcome')
 def welcome():
-    return "TEST"
+    username = request.args.get('username')
+    return render_template('welcome.html', username=username)
 
 app.run()
