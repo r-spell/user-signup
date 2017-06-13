@@ -50,7 +50,13 @@ def validate_form():
     if email != '':
         if email_invalid(email):
             email_error = "That's not a valid email"
+    if not username_error and not password_error and not verify_error and not email_error:
+        return redirect('welcome?username={0}'.format(username))
+    else:
+        return render_template('signup_form.html', username_error=username_error, password_error=password_error,verify_error=verify_error, email_error=email_error)
 
-    return render_template('signup_form.html', username_error=username_error, password_error=password_error,verify_error=verify_error, email_error=email_error)
+@app.route('/welcome')
+def welcome():
+    return "TEST"
 
 app.run()
