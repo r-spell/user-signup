@@ -42,7 +42,7 @@ def validate_form():
         password_error = "That's not a valid password"
         password = ''
 
-    if len(password_error) != 0 or verify != password:
+    if password_error or verify != password:
         verify_error = "Passwords do not match"
         password = ''
         verify = ''
