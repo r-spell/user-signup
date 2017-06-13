@@ -3,12 +3,15 @@
    {% block content %}
 
 <h1>Sign-up</h1>
+
 <form method='POST'>
-    <label> Username 
-        <input name="username" type="text" value="{{username}}" />
-    </label>
+   <p> <label class='form-label' for="username"> Username </label>
+        <input class='form-input' name="username" type="text" value="{{username}}" /> </p>
     
+<br>
 
-
+  <p>    <label class='form-label' for="password"> Password </label>
+        <input class='form-input' name="password" type="text" value="{{password}}" /> </p>
+    
 
       {% endblock %}
