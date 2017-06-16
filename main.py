@@ -9,15 +9,18 @@ app.config['DEBUG'] = True
 def index():
     return render_template('signup_form.html')
 
+# Check if length of string is valid.  Returns True if Invalid.
 def string_invalid(string):
     if len(string)<3 or len(string)>20 or ' ' in string:
         return True
     return False
 
+#check if string is valid length and only one @ sign.
 def email_invalid(string):
     if string_invalid(string):
         return True
-    if string.count('@') != 1 or string.count('@') != 1 :
+    # check exactly one @ sign
+    if string.count('@') != 1:
         return True
     return False
 
@@ -33,7 +36,7 @@ def validate_form():
     verify_error = ''
     email_error = ''
 
-
+    # tests to show error and clear input if entry is invalid
     if string_invalid(username):
         username_error = "That's not a valid username"
         username = ''
@@ -50,8 +53,11 @@ def validate_form():
     if email != '':
         if email_invalid(email):
             email_error = "That's not a valid email"
+    
+    # show welcome page if no errors
     if not username_error and not password_error and not verify_error and not email_error:
         return redirect('welcome?username={0}'.format(username))
+    # show errors on signup page if any errors
     else:
         return render_template('signup_form.html', username_error=username_error, password_error=password_error,verify_error=verify_error, email_error=email_error)
 
